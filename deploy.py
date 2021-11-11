@@ -1,10 +1,11 @@
 import smtplib, ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from getpass import getpass
 
 sender_email = "olliscloner@gmail.com"
 receiver_email = input("Enter target email:")
-password = input("Type your password and press enter:")
+password = getpass()
 
 message = MIMEMultipart("alternative")
 message["Subject"] = "multipart test"
@@ -13,7 +14,8 @@ message["To"] = receiver_email
 
 # Create the plain-text and HTML version of your message
 with open("Email.html","r") as f:
-    html=f.readlines()
+    html=f.read()
+    
 
 # Turn these into plain/html MIMEText objects
 part = MIMEText(html, "html")
